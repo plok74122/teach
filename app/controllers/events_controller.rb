@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :set_event, :except => [:index, :new, :create]
 
   def index
     @events = Event.all
@@ -9,34 +10,42 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(params.require(:event).permit(:name, :description))
+    @event = Event.new(event_params)
     if @event.save
-      redirect_to :controller => 'events' , :action => 'show' , :id => @event
+      flash[:notice] = '新增成功'
+      redirect_to :controller => 'events', :action => 'show', :id => @event
     else
       render 'new'
     end
   end
 
   def show
-    @event = Event.find(params[:id])
+    @title = @event.name
   end
 
   def edit
-    @event = Event.find(params[:id])
   end
 
   def update
-    @event = Event.find(params[:id])
-    if @event.update(params.require(:event).permit(:name, :description))
-      redirect_to :controller => 'events' , :action => 'show' , :id => @event
+    if @event.update(event_params)
+      flash[:alert] = '修改成功'
+      redirect_to :controller => 'events', :action => 'show', :id => @event
     else
       render 'edit'
     end
   end
 
   def destroy
-    @event = Event.find(params[:id])
     @event.destroy
-    redirect_to :controller => 'events' , :action => 'index'
+    redirect_to :controller => 'events', :action => 'index'
+  end
+
+  private
+  def event_params
+    params.require(:event).permit(:name, :description)
+  end
+
+  def set_event
+    @event = Event.find(params[:id])
   end
 end
