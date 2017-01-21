@@ -1,13 +1,18 @@
 <h1>Event List</h1>
-<ul>
+<table class="table table-striped">
+  <thead>
+    <td>name</td>
+    <td>show</td>
+    <td>edit</td>
+    <td>destroy</td>
+  </thead>
   <% @events.each do |e| %>
-      <li>
-        <%= e.name %>
-        <%= link_to 'show', event_path(e) %>
-        <%= link_to 'edit', edit_event_path(e) %>
-        <%= link_to 'destroy', event_path(e) ,:method => :delete %>
-      </li>
+      <tr>
+        <td><%= e.name %></td>
+        <td><%= link_to 'show', event_path(e) %></td>
+        <td><%= link_to 'edit', edit_event_path(e) %></td>
+        <td><%= link_to 'destroy', event_path(e) ,:method => :delete %></td>
+      </tr>
   <% end %>
-</ul>
-
-<%= link_to 'New Event', new_event_path %>
+</table>
+<%= link_to 'New Event', new_event_path , :class => 'btn btn-success'%>
