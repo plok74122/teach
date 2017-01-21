@@ -3,11 +3,11 @@
   <% @events.each do |e| %>
       <li>
         <%= e.name %>
-        <%= link_to 'show', :controller => 'events', :action => 'show', :id => e %>
-        <%= link_to 'edit', :controller => 'events', :action => 'edit', :id => e %>
-        <%= link_to 'destroy', :controller => 'events', :action => 'destroy', :id => e %>
+        <%= link_to 'show', event_path(e) %>
+        <%= link_to 'edit', edit_event_path(e) %>
+        <%= link_to 'destroy', event_path(e) ,:method => :delete %>
       </li>
   <% end %>
 </ul>
 
-<%= link_to 'New Event', :controller => :events, :action => :new %>
+<%= link_to 'New Event', new_event_path %>
