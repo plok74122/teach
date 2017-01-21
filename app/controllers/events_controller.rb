@@ -12,6 +12,8 @@ class EventsController < ApplicationController
     @event = Event.new(params.require(:event).permit(:name, :description))
     if @event.save
       redirect_to :controller => 'events' , :action => 'show' , :id => @event
+    else
+      render 'new'
     end
   end
 
@@ -27,6 +29,8 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     if @event.update(params.require(:event).permit(:name, :description))
       redirect_to :controller => 'events' , :action => 'show' , :id => @event
+    else
+      render 'edit'
     end
   end
 
