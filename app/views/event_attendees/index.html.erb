@@ -2,8 +2,12 @@
 
 <ul>
   <% @attendees.each do |a| %>
-      <li><%= a.name %></li>
+      <li><%= a.name %>
+        <%= link_to 'show', event_attendee_path(@event, a) %>
+        <%= link_to 'edit', edit_event_attendee_path(@event, a) %>
+        <%= link_to 'destroy', event_attendee_path(@event, a), :method => :delete %>
+      </li>
   <% end %>
 </ul>
 
-<%= link_to 'new attendee' , new_event_attendee_path(@event) %>
+<%= link_to 'new attendee', new_event_attendee_path(@event) %>
