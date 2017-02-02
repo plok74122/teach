@@ -3,6 +3,7 @@
   <thead>
     <td>name</td>
     <td>show</td>
+    <td>attendee</td>
     <td>edit</td>
     <td>destroy</td>
   </thead>
@@ -10,6 +11,7 @@
       <tr>
         <td><%= e.name %></td>
         <td><%= link_to 'show', event_path(e) %></td>
+        <td><%= link_to 'attendees' , event_attendees_path(e) %></td>
         <td><%= link_to 'edit', edit_event_path(e) %></td>
         <td><%= link_to 'destroy', event_path(e) ,:method => :delete %></td>
       </tr>

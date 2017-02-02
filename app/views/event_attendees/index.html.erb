@@ -1,0 +1,9 @@
+<h1><%= @event.name %> Attendees</h1>
+
+<ul>
+  <% @attendees.each do |a| %>
+      <li><%= a.name %></li>
+  <% end %>
+</ul>
+
+<%= link_to 'new attendee' , new_event_attendee_path(@event) %>
