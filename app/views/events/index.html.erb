@@ -9,7 +9,7 @@
   </thead>
   <% @events.each do |e| %>
       <tr>
-        <td><%= e.name %></td>
+        <td><%= e.name %>(<%= e.category.name %>)</td>
         <td><%= link_to 'show', event_path(e) %></td>
         <td><%= link_to 'attendees' , event_attendees_path(e) %></td>
         <td><%= link_to 'edit', edit_event_path(e) %></td>
